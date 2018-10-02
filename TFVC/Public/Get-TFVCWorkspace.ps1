@@ -21,8 +21,9 @@ function Get-TFVCWorkspace
             ParameterSetName = 'Default'
         )]
         [ValidateNotNullOrEmpty()]
+        [ValidateLength(1,64)]
         [String]
-        $Name = [NullString]::Value,
+        $Name = "${env:COMPUTERNAME}-Default",
 
         # Workspace owner
         [Alias('WorkspaceOwner')]
@@ -76,6 +77,10 @@ function Get-TFVCWorkspace
                     $TFVCSession.GetWorkspace( $PSBoundParameters.Name, $Owner )
                 }
             }
+        }
+        catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceNotFoundException]
+        {
+            Write-Verbose 'The workspace could not be found'
         }
         catch
         {

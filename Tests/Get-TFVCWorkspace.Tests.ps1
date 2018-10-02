@@ -1,8 +1,20 @@
 Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
 
-    $workspaceFolder = 'C:\AllSource\CLP\trunk'
-    it 'Gets a local workspace' {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection LDTS
+    BeforeAll {
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        $workspaceFolder = 'C:\AllSource\CLP\trunk'
+    }
+
+    BeforeEach {
+        $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0,64)
+    }
+
+    It 'Gets a local workspace' {
         Get-TFVCWorkspace -Path $workspaceFolder | Should -Not -BeNullOrEmpty
+    }
+
+    It 'handles getting a missing workspace' {
+        Get-TFVCWorkspace -Name $Name |
+            Should -BeNullOrEmpty
     }
 }

@@ -20,6 +20,7 @@ function New-TFVCWorkspace
             ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullOrEmpty()]
+        [ValidateLength(1,64)]
         [String]
         $Name = "${env:COMPUTERNAME}-Default",
 
@@ -39,7 +40,7 @@ function New-TFVCWorkspace
                 $TFVCSession.CreateWorkspace( $Name )
             }
         }
-        catch [WorkspaceExistsException]
+        catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceExistsException]
         {
             Write-Verbose "The workspace [$Name] already exists. Using existing workspace."
             Get-TFVCWorkspace @PSBoundParameters

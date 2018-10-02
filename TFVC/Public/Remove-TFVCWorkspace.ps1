@@ -13,8 +13,6 @@ function Remove-TFVCWorkspace
     #>
     [cmdletbinding(DefaultParameterSetName = 'Named', SupportsShouldProcess)]
     param(
-
-
         # Name of the workspace
         [Parameter(
             Position = 0,
@@ -22,6 +20,7 @@ function Remove-TFVCWorkspace
             ParameterSetName = 'Named'
         )]
         [ValidateNotNullOrEmpty()]
+        [ValidateLength(1,64)]
         [String]
         $Name = "${env:COMPUTERNAME}-Default",
 
@@ -32,7 +31,6 @@ function Remove-TFVCWorkspace
             ValueFromPipeline,
             ParameterSetName = 'Workspace'
         )]
-        [ValidateNotNullOrEmpty()]
         [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
         $Workspace,
 
@@ -52,7 +50,7 @@ function Remove-TFVCWorkspace
                 $Workspace = Get-TFVCWorkspace -Name $Name -TFVCSession $TFVCSession
             }
 
-            if ( $PSCmdlet.ShouldProcess( $Workspace.DisplayName ) )
+            if ( $null -ne $Workspace -and $PSCmdlet.ShouldProcess( $Workspace.DisplayName ) )
             {
                 if ( $Workspace.Delete() )
                 {
@@ -64,7 +62,7 @@ function Remove-TFVCWorkspace
                 }
             }
         }
-        catch [WorkspaceDeletedException]
+        catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceDeletedException]
         {
             Write-Verbose 'This workspace has alraedy been deleted'
         }
