@@ -2,14 +2,16 @@ function New-TFVCWorkspace
 {
     <#
         .Synopsis
+        Creates a local workspace
 
         .Example
         New-TFVCWorkspace -Path $Path
 
         .Notes
+        Name must be unique per owner
 
     #>
-    [cmdletbinding()]
+    [cmdletbinding(SupportsShouldProcess)]
     [OutputType('Microsoft.TeamFoundation.VersionControl.Client.Workspace')]
     param(
         # Parameter help description
@@ -32,7 +34,15 @@ function New-TFVCWorkspace
     {
         try
         {
-            $TFVCSession.CreateWorkspace($Name)
+            if ( $PSCmdlet.ShouldProcess( $Name ) )
+            {
+                $TFVCSession.CreateWorkspace( $Name )
+            }
+        }
+        catch [WorkspaceExistsException]
+        {
+            Write-Verbose "The workspace [$Name] already exists. Using existing workspace."
+            Get-TFVCWorkspace @PSBoundParameters
         }
         catch
         {

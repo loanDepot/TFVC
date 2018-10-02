@@ -2,14 +2,16 @@ function Remove-TFVCWorkspace
 {
     <#
         .Synopsis
+        This will delete an existing workspace.
 
         .Example
         Remove-TFVCWorkspace -Path $Path
 
         .Notes
+        This implementation only deletes from the local system, but could be enhanced to delete any workspace from TFS
 
     #>
-    [cmdletbinding(DefaultParameterSetName = 'Named')]
+    [cmdletbinding(DefaultParameterSetName = 'Named', SupportsShouldProcess)]
     param(
 
 
@@ -50,16 +52,25 @@ function Remove-TFVCWorkspace
                 $Workspace = Get-TFVCWorkspace -Name $Name -TFVCSession $TFVCSession
             }
 
-            if ( $PSCmdlet.ShouldContinue( $Workspace.DisplayName ) )
+            if ( $PSCmdlet.ShouldProcess( $Workspace.DisplayName ) )
             {
-                $Workspace.Delete()
+                if ( $Workspace.Delete() )
+                {
+                    Write-Verbose "The Workspace [$($Workspace.DisplayName)] was deteled"
+                }
+                else
+                {
+                    Write-Warning 'Calling delete on this workspace object returned [$false] unexpectidly. Are the red ones stuff you wanted removed? Ooh, that''s clever, Morty, but I don''t use color to sort things'
+                }
             }
-
+        }
+        catch [WorkspaceDeletedException]
+        {
+            Write-Verbose 'This workspace has alraedy been deleted'
         }
         catch
         {
             $PSCmdlet.ThrowTerminatingError( $PSItem )
         }
     }
-
 }
