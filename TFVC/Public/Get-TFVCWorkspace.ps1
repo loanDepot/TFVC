@@ -2,6 +2,7 @@ function Get-TFVCWorkspace
 {
     <#
         .Synopsis
+        Gets the local workspace
 
         .Example
         Get-TFVCWorkspace -Path $Path
@@ -9,42 +10,76 @@ function Get-TFVCWorkspace
         .Notes
 
     #>
-    [cmdletbinding()]
+    [cmdletbinding( DefaultParameterSetName = 'Default' )]
+    [OutputType('Microsoft.TeamFoundation.VersionControl.Client.Workspace')]
     param(
-        # Parameter help description
+        # Workspace name
+        [Alias('WorkspaceName','Workspace')]
+        [Parameter(
+            Position = 0,
+            ValueFromPipelineByPropertyName,
+            ParameterSetName = 'Default'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Name = [NullString]::Value,
+
+        # Workspace owner
+        [Alias('WorkspaceOwner')]
+        [Parameter(
+            Position = 0,
+            ValueFromPipelineByPropertyName,
+            ParameterSetName = 'Default'
+        )]
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Owner = $env:USERNAME,
+
+        # Local path to a working folder
+        [Alias('LocalPath','Folder','Directory','FullName','WorkingFolder')]
         [Parameter(
             Mandatory,
             Position = 0,
-            ValueFromPipelineByPropertyName
+            ValueFromPipelineByPropertyName,
+            ParameterSetName = 'LocalPath'
         )]
         [ValidateNotNullOrEmpty()]
-        [String[]]
-        $Path
+        [String]
+        $Path,
+
+        # Active TFVC Session
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [TFVCSession]
+        $TFVCSession = (Get-TFVCSession)
     )
-
-    begin
-    {
-
-    }
 
     process
     {
         try
         {
-            foreach ( $node in $Path )
+            if ( $null -eq $TFVCSession )
             {
-                Write-Debug $node
+                Write-Warning 'No TFVCSession available to retreive workspace'
+                return
+            }
 
+            switch ( $PSCmdlet.ParameterSetName )
+            {
+                'LocalPath'
+                {
+                    Write-Debug "Working folder path [$Path]"
+                    $TFVCSession.GetWorkspaceFromPath( $Path )
+                }
+                default
+                {
+                    $TFVCSession.GetWorkspace( $PSBoundParameters.Name, $Owner )
+                }
             }
         }
         catch
         {
             $PSCmdlet.ThrowTerminatingError( $PSItem )
         }
-    }
-
-    end
-    {
-
     }
 }

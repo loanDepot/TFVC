@@ -10,41 +10,33 @@ function New-TFVCWorkspace
 
     #>
     [cmdletbinding()]
+    [OutputType('Microsoft.TeamFoundation.VersionControl.Client.Workspace')]
     param(
         # Parameter help description
         [Parameter(
-            Mandatory,
             Position = 0,
             ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullOrEmpty()]
-        [String[]]
-        $Path
+        [String]
+        $Name = "${env:COMPUTERNAME}-Default",
+
+        # Active TFVC Session
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [TFVCSession]
+        $TFVCSession = (Get-TFVCSession)
     )
-
-    begin
-    {
-
-    }
 
     process
     {
         try
         {
-            foreach ( $node in $Path )
-            {
-                Write-Debug $node
-
-            }
+            $TFVCSession.CreateWorkspace($Name)
         }
         catch
         {
             $PSCmdlet.ThrowTerminatingError( $PSItem )
         }
-    }
-
-    end
-    {
-
     }
 }

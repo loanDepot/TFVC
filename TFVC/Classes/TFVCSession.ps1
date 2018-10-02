@@ -9,6 +9,10 @@ class TFVCSession
     hidden
     [Microsoft.TeamFoundation.Client.TfsTeamProjectCollection] $TfsTeamProjectCollection
 
+    hidden
+    [Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer] $VersionControlServer
+
+
     TFVCSession( [uri]$ProjectCollectionURI )
     {
         $this.Connect( $ProjectCollectionURI )
@@ -64,6 +68,7 @@ class TFVCSession
         {
             $this.DisplayName = $this.TfsTeamProjectCollection.DisplayName
             $this.Server = $this.TfsTeamProjectCollection.ConfigurationServer.Uri
+            $this.VersionControlServer = $this.GetVersionControlServer()
         }
     }
     [void] Disconnect()
@@ -74,5 +79,26 @@ class TFVCSession
             $this.TfsTeamProjectCollection.Dispose()
             $this.TfsTeamProjectCollection = $null
         }
+    }
+
+    hidden
+    [Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer] GetVersionControlServer ()
+    {
+        return $this.TfsTeamProjectCollection.GetService( [Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer] )
+    }
+
+    [Microsoft.TeamFoundation.VersionControl.Client.Workspace] GetWorkspaceFromPath( $LocalPath )
+    {
+        return $this.VersionControlServer.GetWorkspace( $LocalPath )
+    }
+
+    [Microsoft.TeamFoundation.VersionControl.Client.Workspace] GetWorkspace( $WorkspaceName, $WorkspaceOwner )
+    {
+        return $this.VersionControlServer.GetWorkspace( $WorkspaceName, $WorkspaceOwner )
+    }
+
+    [Microsoft.TeamFoundation.VersionControl.Client.Workspace] CreateWorkspace( $Name )
+    {
+        return $this.VersionControlServer.CreateWorkspace( $Name )
     }
 }

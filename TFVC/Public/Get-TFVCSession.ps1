@@ -16,6 +16,13 @@ function Get-TFVCSession
 
     process
     {
-        $script:MasterTFVCSession
+        if ( $null -eq $script:MasterTFVCSession )
+        {
+            Write-Warning 'There are no active TFVC sessions, please run [New-TFVCSession] to connect to a server'
+        }
+        else
+        {
+            $script:MasterTFVCSession
+        }
     }
 }
