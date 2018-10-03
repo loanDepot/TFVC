@@ -13,12 +13,13 @@ schema: 2.0.0
 
 ### Default (Default)
 ```
-Get-TFVCWorkspace [[-Name] <String>] [[-Owner] <String>] [-TFVCSession <TFVCSession>] [<CommonParameters>]
+Get-TFVCWorkspace [[-Name] <String>] [[-Owner] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWorkspace]
+ [<CommonParameters>]
 ```
 
 ### LocalPath
 ```
-Get-TFVCWorkspace [-Path] <String> [-TFVCSession <TFVCSession>] [<CommonParameters>]
+Get-TFVCWorkspace [-Path] <String> [-TFVCSession <TFVCSession>] [-SetActiveWorkspace] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -75,6 +76,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -SetActiveWorkspace
+Sets the resulting workspace as the active workspace
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

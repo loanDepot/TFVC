@@ -69,7 +69,7 @@ RequiredModules = @('TFVC.libraries')
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport =  @('Add-TFVCWorkspaceMapping','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','New-TFVCSession','New-TFVCWorkspace','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping')
+FunctionsToExport =  @('Add-TFVCWorkspaceMapping','Get-TFVCActiveWorkspace','Get-TFVCLatest','Get-TFVCMergeCandidate','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','New-TFVCSession','New-TFVCWorkspace','Remove-TFVCActiveWorkspace','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping','Set-TFVCActiveWorkspace')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport =  @()
@@ -120,5 +120,4 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-
 

@@ -23,6 +23,12 @@ Describe 'Function New-TFVCWorkspace' -Tag LocalIntegration {
             $workspace | Should -BeNullOrEmpty
         }
 
+        it 'also does not throw' {
+            New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+            $workspace = New-TFVCWorkspace
+            $workspace | Should -Not -BeNullOrEmpty
+        }
+
         It 'creates a workspace' {
             $workspace = New-TFVCWorkspace -Name $Name
             $workspace | Should -Not -BeNullOrEmpty

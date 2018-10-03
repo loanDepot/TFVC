@@ -5,15 +5,15 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TFVCWorkspace
+# Set-TFVCActiveWorkspace
 
 ## SYNOPSIS
+Sets a workspace as the default one for the current powershell session
 
 ## SYNTAX
 
 ```
-New-TFVCWorkspace [[-Name] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWorkspace] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-TFVCActiveWorkspace [-Workspace] <Workspace> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,53 +23,26 @@ New-TFVCWorkspace [[-Name] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWor
 
 ### EXAMPLE 1
 ```
-New-TFVCWorkspace -Path $Path
+New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
 ```
+
+$workspace = Get-TFVCWorkspace
+Set-TFVCActiveWorkspace -Workspace $Workspace
 
 ## PARAMETERS
 
-### -Name
-Parameter help description
+### -Workspace
+The workspace
 
 ```yaml
-Type: String
+Type: Workspace
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 1
-Default value: "${env:COMPUTERNAME}-Default"
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -SetActiveWorkspace
-{{Fill SetActiveWorkspace Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -TFVCSession
-Active TFVC Session
-
-```yaml
-Type: TFVCSession
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: (Get-TFVCSession)
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -89,7 +62,8 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs. The cmdlet is not run.
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter

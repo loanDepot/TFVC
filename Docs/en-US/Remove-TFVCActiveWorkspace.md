@@ -5,15 +5,15 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TFVCWorkspace
+# Remove-TFVCActiveWorkspace
 
 ## SYNOPSIS
+Makes the current active workspace nolonger active.
 
 ## SYNTAX
 
 ```
-New-TFVCWorkspace [[-Name] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWorkspace] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Remove-TFVCActiveWorkspace [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,55 +23,10 @@ New-TFVCWorkspace [[-Name] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWor
 
 ### EXAMPLE 1
 ```
-New-TFVCWorkspace -Path $Path
+Remove-TFVCActiveWorkspace
 ```
 
 ## PARAMETERS
-
-### -Name
-Parameter help description
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: "${env:COMPUTERNAME}-Default"
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -SetActiveWorkspace
-{{Fill SetActiveWorkspace Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -TFVCSession
-Active TFVC Session
-
-```yaml
-Type: TFVCSession
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: (Get-TFVCSession)
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Confirm
 Prompts you for confirmation before running the cmdlet.
@@ -89,7 +44,8 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs. The cmdlet is not run.
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter

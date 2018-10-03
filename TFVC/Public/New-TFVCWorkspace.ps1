@@ -28,7 +28,11 @@ function New-TFVCWorkspace
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [TFVCSession]
-        $TFVCSession = (Get-TFVCSession)
+        $TFVCSession = (Get-TFVCSession),
+
+        # Sets this workspace as the active workspace
+        [switch]
+        $SetActiveWorkspace
     )
 
     process
@@ -37,13 +41,24 @@ function New-TFVCWorkspace
         {
             if ( $PSCmdlet.ShouldProcess( $Name ) )
             {
-                $TFVCSession.CreateWorkspace( $Name )
+                $workspace = $TFVCSession.CreateWorkspace( $Name )
+                if ( $SetActiveWorkspace )
+                {
+                    Set-TFVCActiveWorkspace -Workspace $workspace
+                }
+
+                return $workspace
             }
         }
         catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceExistsException]
         {
             Write-Verbose "The workspace [$Name] already exists. Using existing workspace."
-            Get-TFVCWorkspace @PSBoundParameters
+            $TFVCWorkspace = @{
+                Name = $Name
+                TFVCSession = $TFVCSession
+                SetActiveWorkspace = [bool]$SetActiveWorkspace
+            }
+            Get-TFVCWorkspace @TFVCWorkspace
         }
         catch
         {

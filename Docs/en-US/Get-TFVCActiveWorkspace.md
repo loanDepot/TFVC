@@ -5,15 +5,15 @@ online version:
 schema: 2.0.0
 ---
 
-# New-TFVCWorkspace
+# Get-TFVCActiveWorkspace
 
 ## SYNOPSIS
+Gets the currently active workspace
 
 ## SYNTAX
 
 ```
-New-TFVCWorkspace [[-Name] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWorkspace] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Get-TFVCActiveWorkspace [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,55 +23,10 @@ New-TFVCWorkspace [[-Name] <String>] [-TFVCSession <TFVCSession>] [-SetActiveWor
 
 ### EXAMPLE 1
 ```
-New-TFVCWorkspace -Path $Path
+Get-TFVCActiveWorkspace
 ```
 
 ## PARAMETERS
-
-### -Name
-Parameter help description
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: "${env:COMPUTERNAME}-Default"
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -SetActiveWorkspace
-{{Fill SetActiveWorkspace Description}}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -TFVCSession
-Active TFVC Session
-
-```yaml
-Type: TFVCSession
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: (Get-TFVCSession)
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Confirm
 Prompts you for confirmation before running the cmdlet.
@@ -111,5 +66,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+This is used to provide a default value for cmdlets that need a workspace.
+This is why it throws an error if it is used before a workspace is set.
 
 ## RELATED LINKS

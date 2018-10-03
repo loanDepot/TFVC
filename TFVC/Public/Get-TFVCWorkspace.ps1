@@ -52,13 +52,19 @@ function Get-TFVCWorkspace
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [TFVCSession]
-        $TFVCSession = (Get-TFVCSession)
+        $TFVCSession = (Get-TFVCSession),
+
+        # Sets the resulting workspace as the active workspace
+        [switch]
+        $SetActiveWorkspace
     )
 
     process
     {
         try
         {
+            $workspace = $null
+
             if ( $null -eq $TFVCSession )
             {
                 Write-Warning 'No TFVCSession available to retreive workspace'
@@ -70,13 +76,20 @@ function Get-TFVCWorkspace
                 'LocalPath'
                 {
                     Write-Debug "Working folder path [$Path]"
-                    $TFVCSession.GetWorkspaceFromPath( $Path )
+                    $workspace = $TFVCSession.GetWorkspaceFromPath( $Path )
                 }
                 default
                 {
-                    $TFVCSession.GetWorkspace( $PSBoundParameters.Name, $Owner )
+                    $workspace = $TFVCSession.GetWorkspace( $PSBoundParameters.Name, $Owner )
                 }
             }
+
+            if ( $SetActiveWorkspace )
+            {
+                $workspace | Set-TFVCActiveWorkspace
+            }
+
+            return $workspace
         }
         catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceNotFoundException]
         {

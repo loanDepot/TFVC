@@ -5,14 +5,16 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TFVCLatest
+# Get-TFVCMergeCandidate
 
 ## SYNOPSIS
+Compares 2 branches and get the changeset that are different between them
 
 ## SYNTAX
 
 ```
-Get-TFVCLatest [-Workspace] <Workspace> [-WhatIf] [-Confirm] [<CommonParameters>]
+Get-TFVCMergeCandidate [-Workspace] <Workspace> [-SourceBranch] <String> [-TargetBranch] <String>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,16 +24,43 @@ Get-TFVCLatest [-Workspace] <Workspace> [-WhatIf] [-Confirm] [<CommonParameters>
 
 ### EXAMPLE 1
 ```
-New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+Get-TFVCMergeCandidate -SourceBranch $SourceBranch -TargetBranch $TargetBbranch -Workspace $Workspace
 ```
-
-$workspace = Get-TFVCWorkspace
-$workspace | Get-TFVCLatest
 
 ## PARAMETERS
 
+### -SourceBranch
+Source banch with the chagnes that need to be merged
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -TargetBranch
+Target branch to merge the changes into
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -Workspace
-A workspace to get latest
+the workspace
 
 ```yaml
 Type: Workspace
@@ -42,37 +71,6 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
