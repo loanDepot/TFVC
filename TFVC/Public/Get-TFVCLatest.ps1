@@ -17,13 +17,12 @@ function Get-TFVCLatest
     param(
         # A workspace to get latest
         [Parameter(
-            Mandatory,
             Position = 0,
             ValueFromPipeline
         )]
         [ValidateNotNullOrEmpty()]
         [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
-        $Workspace
+        $Workspace = (Get-TFVCActiveWorkspace)
     )
 
     process

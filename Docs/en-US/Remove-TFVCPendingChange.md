@@ -5,14 +5,16 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-TFVCLatest
+# Remove-TFVCPendingChange
 
 ## SYNOPSIS
+Removes the specified pending changes
 
 ## SYNTAX
 
 ```
-Get-TFVCLatest [[-Workspace] <Workspace>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-TFVCPendingChange [[-Workspace] <Workspace>] [[-Path] <Object>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,16 +24,33 @@ Get-TFVCLatest [[-Workspace] <Workspace>] [-WhatIf] [-Confirm] [<CommonParameter
 
 ### EXAMPLE 1
 ```
-New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+Remove-TFVCPendingChange -Path $Path
 ```
 
-$workspace = Get-TFVCWorkspace
-$workspace | Get-TFVCLatest
+### EXAMPLE 2
+```
+Remove-TFVCPendingChange | Remove-TFVCPendingChages
+```
 
 ## PARAMETERS
 
+### -Path
+Local path to the pending change that should be removed
+
+```yaml
+Type: Object
+Parameter Sets: (All)
+Aliases: FullName, LocalItem
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -Workspace
-A workspace to get latest
+The Workspace
 
 ```yaml
 Type: Workspace
@@ -40,7 +59,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: (Get-TFVCActiveWorkspace)
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```

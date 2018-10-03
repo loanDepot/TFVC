@@ -49,16 +49,12 @@ function Get-TFVCMergeCandidate
     {
         try
         {
-            $TFVCSession.VersionControlServer.GetMergeCandidates( $SourceBranch, $TargetBranch, $recursive )
+            $MergeCandidate = $TFVCSession.VersionControlServer.GetMergeCandidates( $SourceBranch, $TargetBranch, $recursive )
+            $MergeCandidate.ChangeSet
         }
         catch
         {
             $PSCmdlet.ThrowTerminatingError( $PSItem )
         }
-    }
-
-    end
-    {
-
     }
 }
