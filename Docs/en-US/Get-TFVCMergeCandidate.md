@@ -13,7 +13,7 @@ Compares 2 branches and get the changeset that are different between them
 ## SYNTAX
 
 ```
-Get-TFVCMergeCandidate [-Workspace] <Workspace> [-SourceBranch] <String> [-TargetBranch] <String>
+Get-TFVCMergeCandidate [-SourceBranch] <String> [-TargetBranch] <String> [-TFVCSession <TFVCSession>]
  [<CommonParameters>]
 ```
 
@@ -59,18 +59,18 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Workspace
-the workspace
+### -TFVCSession
+Active TFVC Session
 
 ```yaml
-Type: Workspace
+Type: TFVCSession
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: False
+Position: Named
+Default value: (Get-TFVCSession)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

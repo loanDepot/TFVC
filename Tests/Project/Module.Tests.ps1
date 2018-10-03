@@ -32,8 +32,8 @@ Describe "All commands pass PSScriptAnalyzer rules" -Tag 'Build' {
     }
 }
 
-Describe "Public commands have Pester tests" -Tag 'Build' {
-    $commands = Get-Command -Module $ModuleName -ne Alias
+Describe "[$ModuleName] Public commands have Pester tests" -Tag 'Build' {
+    $commands = Get-Command -Module $ModuleName | where CommandType -ne Alias
 
     foreach ($command in $commands.Name)
     {

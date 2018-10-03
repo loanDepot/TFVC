@@ -13,15 +13,6 @@ function Get-TFVCMergeCandidate
     [cmdletbinding()]
     param(
 
-         # the workspace
-         [Parameter(
-            Mandatory,
-            Position = 0,
-            ValueFromPipeline
-        )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
-        $Workspace,
-
         # Source banch with the chagnes that need to be merged
         [Parameter(
             Mandatory,
@@ -40,23 +31,25 @@ function Get-TFVCMergeCandidate
         )]
         [ValidateNotNullOrEmpty()]
         [String]
-        $TargetBranch
+        $TargetBranch,
+
+        # Active TFVC Session
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [TFVCSession]
+        $TFVCSession = (Get-TFVCSession)
     )
 
     begin
     {
-
+        $recursive = [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]::Full
     }
 
     process
     {
         try
         {
-            foreach ( $node in $SourceBranch )
-            {
-                Write-Debug $node
-
-            }
+            $TFVCSession.VersionControlServer.GetMergeCandidates( $SourceBranch, $TargetBranch, $recursive )
         }
         catch
         {
