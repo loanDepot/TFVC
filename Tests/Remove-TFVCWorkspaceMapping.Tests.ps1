@@ -17,7 +17,7 @@ Describe 'function Remove-TFVCWorkspaceMapping' -Tag LocalIntegration {
     It 'Will remove folder object' {
         $folder = $workspace | Add-TFVCWorkspaceMapping -Source $source -Destination $local
         $folder | Should -Not -BeNullOrEmpty
-        $workspace | Remove-TFVCWorkspaceMapping -Mapping $folder -verbose
+        $workspace | Remove-TFVCWorkspaceMapping -Mapping $folder
     }
 
     AfterAll {

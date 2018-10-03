@@ -17,7 +17,7 @@ Describe 'function Get-TFVCWorkspaceMapping' -Tag LocalIntegration {
 
     It 'Handles filtering' {
         $workspace | Add-TFVCWorkspaceMapping -Source '$/PPE/master' -Destination "$testdrive\ppe\master"
-        $workspace | Add-TFVCWorkspaceMapping -Source $source -Destination $local -Verbose
+        $workspace | Add-TFVCWorkspaceMapping -Source $source -Destination $local
 
         $folder = $workspace | Get-TFVCWorkspaceMapping
         $folder | Should -Not -BeNullOrEmpty

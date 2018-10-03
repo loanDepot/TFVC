@@ -9,7 +9,7 @@ Describe 'function Add-TFVCWorkspaceMapping' -Tag LocalIntegration {
     }
 
     It 'Does not throw' {
-        $folder = $workspace | Add-TFVCWorkspaceMapping -Source $source -Destination $local -Verbose
+        $folder = $workspace | Add-TFVCWorkspaceMapping -Source $source -Destination $local
         $folder | Should -Not -BeNullOrEmpty
     }
 
