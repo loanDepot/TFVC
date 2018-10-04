@@ -9,9 +9,10 @@ function Merge-TFVCChangeset
 
         .Notes
         Workspace.Merge: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/bb139330%28v%3dvs.120%29
-
+        MergeOptionsEx: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/ff736044%28v%3dvs.120%29
     #>
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType('[Microsoft.TeamFoundation.VersionControl.Client.GetStatus]')]
     param(
          # the workspace
          [Parameter(
@@ -60,14 +61,23 @@ function Merge-TFVCChangeset
             ValueFromPipelineByPropertyName
         )]
         [Microsoft.TeamFoundation.VersionControl.Client.Changeset]
-        $ToChangeset
-    )
+        $ToChangeset,
 
-    begin
-    {
-		$lock = [Microsoft.TeamFoundation.VersionControl.Client.LockLevel]::None
-		$recurse = [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]::Full
-    }
+        # Special options to use for the merge. Default is None
+        [Parameter()]
+        [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx]
+        $MergeOptions = [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx]::None,
+
+        # Specified lock level
+        [Parameter()]
+        [Microsoft.TeamFoundation.VersionControl.Client.LockLevel]
+        $LockLevel = [Microsoft.TeamFoundation.VersionControl.Client.LockLevel]::None,
+
+        # Recursion type
+        [Parameter()]
+        [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]
+        $RecursionType = [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]::Full
+    )
 
     process
     {
@@ -82,10 +92,9 @@ function Merge-TFVCChangeset
             $toVersion = [Microsoft.TeamFoundation.VersionControl.Client.ChangesetVersionSpec]::new($ToChangeset.ChangesetId)
 
             # Get the results of a merge without doing a merge
-            $mergeFlags = [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx] "NoMerge, None"
-            if ( $PSCmdlet.ShouldProcess($TargetBranch) )
+            if ( -Not $PSCmdlet.ShouldProcess($TargetBranch) )
             {
-                $mergeFlags = [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx] "None"
+                $MergeOptions = $MergeOptions -bor [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx]::NoMerge
             }
 
             $status = $Workspace.Merge(
@@ -93,9 +102,9 @@ function Merge-TFVCChangeset
                 $TargetBranch,
                 $fromVersion,
                 $toVersion,
-                $lock,
-                $recurse,
-                $mergeFlags
+                $LockLevel,
+                $RecursionType,
+                $MergeOptions
             )
             $status
         }
