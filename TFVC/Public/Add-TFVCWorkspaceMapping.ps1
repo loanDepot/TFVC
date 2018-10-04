@@ -9,7 +9,7 @@ function Add-TFVCWorkspaceMapping
         .Example
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = Get-TFVCWorkspace
-        $workspace | Add-TFVCWorkspaceMapping -Source '$/PPE/trunk' -Destination 'c:\localworkspace\ppe\trunk'
+        $workspace | Add-TFVCWorkspaceMapping -Source '$/DevOpsTFVCTest/master' -Destination 'c:\localworkspace\DevOpsTFVCTest\master'
 
         .Notes
 

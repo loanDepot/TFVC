@@ -5,8 +5,8 @@ Describe 'Function Get-TFVCMergeCandidate' -Tag LocalIntegration {
     }
 
     BeforeEach {
-        $sourceBranch = '$/DevOps/Sandboxes/LDXProject'
-        $targetBranch = '$/DevOps/Sandboxes/KMarquette'
+        $sourceBranch = '$/DevOpsTFVCTest/trunk'
+        $targetBranch = '$/DevOpsTFVCTest/master'
     }
 
     It 'Does something' {

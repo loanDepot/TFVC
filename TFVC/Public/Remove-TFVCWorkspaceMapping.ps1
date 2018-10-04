@@ -9,7 +9,7 @@ function Remove-TFVCWorkspaceMapping
         .Example
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = Get-TFVCWorkspace
-        $workspace | Remove-TFVCWorkspaceMapping -Source '$/PPE/trunk'
+        $workspace | Remove-TFVCWorkspaceMapping -Source '$/DevOpsTFVCTest/master'
 
         .Notes
 

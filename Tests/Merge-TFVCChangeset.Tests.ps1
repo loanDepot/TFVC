@@ -3,15 +3,18 @@ Describe 'Function Merge-TFVCChangeset' -Tag LocalIntegration {
     It 'Happy path integration test' {
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
 
+        $source = '$/DevOpsTFVCTest'
+        $local = "$testdrive\DevOpsTFVCTest\master"
+
+        $sourceBranch = "$source/trunk"
+        $targetBranch = "$source/master"
+
         $Workspace = New-TFVCWorkspace -SetActiveWorkspace
-        $Workspace | Add-TFVCWorkspaceMapping -Source '$/DevOps/Sandboxes/KMarquette' -Destination 'c:\AllSource\temp\kmarquette'
-        $Workspace | Add-TFVCWorkspaceMapping -Source '$/DevOps/Sandboxes/KMarquette-test' -Destination 'c:\AllSource\temp\kmarquette-test'
+        $Workspace | Add-TFVCWorkspaceMapping -Source $targetBranch -Destination $local
 
         Remove-TFVCPendingChange
         Get-TFVCLatest
 
-        $sourceBranch = '$/DevOps/Sandboxes/KMarquette'
-        $targetBranch = '$/DevOps/Sandboxes/KMarquette-test'
 
         $changeset = Get-TFVCMergeCandidate -SourceBranch $sourceBranch -TargetBranch $targetBranch
         $changeset | Should -Not -BeNullOrEmpty -Because 'We need testdata for the merge'

@@ -1,12 +1,16 @@
 Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
 
     BeforeAll {
+        $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0, 64)
+        $source = '$/DevOpsTFVCTest/master'
+        $local = "$testdrive\DevOpsTFVCTest\master"
+
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
-        $workspaceFolder = 'C:\AllSource\CLP\trunk'
+        New-TFVCWorkspace -Name $Name
+        Add-TFVCWorkspaceMapping -Source $source -Destination $local
     }
 
     BeforeEach {
-        $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0, 64)
     }
 
     It 'Gets a local workspace' {
@@ -14,7 +18,11 @@ Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
     }
 
     It 'handles getting a missing workspace' {
-        Get-TFVCWorkspace -Name $Name |
+        Get-TFVCWorkspace -Name 'MISSING_WORKSPACE_NAME' |
             Should -BeNullOrEmpty
+    }
+
+    AfterAll {
+        Remove-TFVCWorkspace -Name $Name
     }
 }

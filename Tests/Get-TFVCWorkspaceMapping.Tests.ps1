@@ -1,8 +1,8 @@
 Describe 'function Get-TFVCWorkspaceMapping' -Tag LocalIntegration {
 
     BeforeAll {
-        $local = "$testdrive\ppe\trunk"
-        $source = '$/PPE/trunk'
+        $source = '$/DevOpsTFVCTest/master'
+        $local = "$testdrive\DevOpsTFVCTest\master"
 
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = New-TFVCWorkspace
@@ -16,7 +16,7 @@ Describe 'function Get-TFVCWorkspaceMapping' -Tag LocalIntegration {
     }
 
     It 'Handles filtering' {
-        $workspace | Add-TFVCWorkspaceMapping -Source '$/PPE/master' -Destination "$testdrive\ppe\master"
+        $workspace | Add-TFVCWorkspaceMapping -Source '$/DevOpsTFVCTest/trunk' -Destination "$testdrive\DevOpsTFVCTest\trunk"
         $workspace | Add-TFVCWorkspaceMapping -Source $source -Destination $local
 
         $folder = $workspace | Get-TFVCWorkspaceMapping

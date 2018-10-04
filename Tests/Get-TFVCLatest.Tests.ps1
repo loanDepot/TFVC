@@ -1,8 +1,8 @@
 Describe 'function Get-TFVCLatest' -Tag LocalIntegration {
 
     BeforeAll {
-        $local = "$testdrive\ppe\trunk"
-        $source = '$/PPE/trunk'
+        $local = "$testdrive\DevOpsTFVCTest\master"
+        $source = '$/DevOpsTFVCTest/master'
 
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = New-TFVCWorkspace

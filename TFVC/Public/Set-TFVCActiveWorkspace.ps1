@@ -8,8 +8,12 @@ function Set-TFVCActiveWorkspace
 
         .Example
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
-        $workspace = Get-TFVCWorkspace
+        $workspace = New-TFVCWorkspace
         Set-TFVCActiveWorkspace -Workspace $Workspace
+
+        .Example
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
+        New-TFVCWorkspace -SetActiveWorkspace
 
         .Notes
 
