@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function New-TFVCWorkspace
 {
     <#
@@ -50,7 +52,7 @@ function New-TFVCWorkspace
                 return $workspace
             }
         }
-        catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceExistsException]
+        catch [WorkspaceExistsException]
         {
             Write-Verbose "The workspace [$Name] already exists. Using existing workspace."
             $TFVCWorkspace = @{

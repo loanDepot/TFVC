@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Set-TFVCActiveWorkspace
 {
     <#
@@ -21,7 +23,7 @@ function Set-TFVCActiveWorkspace
             ValueFromPipeline
         )]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace
     )
 

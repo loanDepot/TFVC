@@ -1,3 +1,6 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+using namespace Microsoft.TeamFoundation.VersionControl.Common
+
 function Merge-TFVCChangeset
 {
     <#
@@ -20,7 +23,7 @@ function Merge-TFVCChangeset
             ValueFromPipeline,
             ParameterSetName = 'Workspace'
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace),
 
         # Source banch with the chagnes that need to be merged
@@ -51,7 +54,7 @@ function Merge-TFVCChangeset
             ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.Changeset]
+        [Changeset]
         $FromChangeset,
 
         # Latest or newest change to be merged
@@ -60,23 +63,23 @@ function Merge-TFVCChangeset
             Position = 3,
             ValueFromPipelineByPropertyName
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Changeset]
+        [Changeset]
         $ToChangeset,
 
         # Special options to use for the merge. Default is None
         [Parameter()]
-        [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx]
-        $MergeOptions = [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx]::None,
+        [MergeOptionsEx]
+        $MergeOptions = [MergeOptionsEx]::None,
 
         # Specified lock level
         [Parameter()]
-        [Microsoft.TeamFoundation.VersionControl.Client.LockLevel]
-        $LockLevel = [Microsoft.TeamFoundation.VersionControl.Client.LockLevel]::None,
+        [LockLevel]
+        $LockLevel = [LockLevel]::None,
 
         # Recursion type
         [Parameter()]
-        [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]
-        $RecursionType = [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]::Full
+        [RecursionType]
+        $RecursionType = [RecursionType]::Full
     )
 
     process
@@ -88,13 +91,13 @@ function Merge-TFVCChangeset
                 $ToChangeset = $FromChangeset
             }
 
-            $fromVersion = [Microsoft.TeamFoundation.VersionControl.Client.ChangesetVersionSpec]::new($FromChangeset.ChangesetId)
-            $toVersion = [Microsoft.TeamFoundation.VersionControl.Client.ChangesetVersionSpec]::new($ToChangeset.ChangesetId)
+            $fromVersion = [ChangesetVersionSpec]::new($FromChangeset.ChangesetId)
+            $toVersion = [ChangesetVersionSpec]::new($ToChangeset.ChangesetId)
 
             # Get the results of a merge without doing a merge
             if ( -Not $PSCmdlet.ShouldProcess($TargetBranch) )
             {
-                $MergeOptions = $MergeOptions -bor [Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx]::NoMerge
+                $MergeOptions = $MergeOptions -bor [MergeOptionsEx]::NoMerge
             }
 
             $status = $Workspace.Merge(

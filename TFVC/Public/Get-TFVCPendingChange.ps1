@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Get-TFVCPendingChange
 {
     <#
@@ -18,7 +20,7 @@ function Get-TFVCPendingChange
             Position = 0,
             ValueFromPipeline
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace)
     )
 

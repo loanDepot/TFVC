@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Get-TFVCWorkspace
 {
     <#
@@ -91,7 +93,7 @@ function Get-TFVCWorkspace
 
             return $workspace
         }
-        catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceNotFoundException]
+        catch [WorkspaceNotFoundException]
         {
             Write-Verbose 'The workspace could not be found'
         }

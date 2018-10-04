@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function New-TFVCShelveset
 {
     <#
@@ -39,7 +41,7 @@ function New-TFVCShelveset
             Position = 2,
             ValueFromPipeline
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace),
 
         # Pending changes to shelve
@@ -47,7 +49,7 @@ function New-TFVCShelveset
             Position = 3,
             ValueFromPipeline
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.PendingChange[]]
+        [PendingChange[]]
         $PendingChange = (Get-TFVCPendingChange),
 
         # Active TFVC Session
@@ -59,8 +61,8 @@ function New-TFVCShelveset
         # ShelvingOptions
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.ShelvingOptions]
-        $ShelvingOptions = [Microsoft.TeamFoundation.VersionControl.Client.ShelvingOptions]::Replace
+        [ShelvingOptions]
+        $ShelvingOptions = [ShelvingOptions]::Replace
     )
 
     process

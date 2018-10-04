@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Remove-TFVCWorkspaceMapping
 {
     <#
@@ -22,7 +24,7 @@ function Remove-TFVCWorkspaceMapping
             ValueFromPipeline
         )]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace,
 
         # The TFS locaion to map to the local system
@@ -57,7 +59,7 @@ function Remove-TFVCWorkspaceMapping
             ValueFromPipeline,
             ParameterSetName = 'WorkingFolder'
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.WorkingFolder[]]
+        [WorkingFolder[]]
         $Mapping
     )
 

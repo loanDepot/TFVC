@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Save-TFVCPendingChange
 {
     <#
@@ -30,7 +32,7 @@ function Save-TFVCPendingChange
             Position = 2,
             ValueFromPipeline
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace),
 
         # Local path to the pending change that should be removed
@@ -47,7 +49,7 @@ function Save-TFVCPendingChange
             Position = 3,
             ValueFromPipeline
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.PendingChange[]]
+        [PendingChange[]]
         $PendingChange = (Get-TFVCPendingChange)
     )
 

@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Add-TFVCWorkspaceMapping
 {
     <#
@@ -22,7 +24,7 @@ function Add-TFVCWorkspaceMapping
             ValueFromPipeline
         )]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace,
 
         # The TFS locaion to map to the local system
@@ -58,7 +60,7 @@ function Add-TFVCWorkspaceMapping
             ParameterSetName = 'WorkingFolder'
         )]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.WorkingFolder]
+        [WorkingFolder]
         $Mapping
     )
 

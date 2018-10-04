@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Get-TFVCLatest
 {
     <#
@@ -21,7 +23,7 @@ function Get-TFVCLatest
             ValueFromPipeline
         )]
         [ValidateNotNullOrEmpty()]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace)
     )
 

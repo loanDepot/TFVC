@@ -1,3 +1,5 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 function Remove-TFVCWorkspace
 {
     <#
@@ -31,7 +33,7 @@ function Remove-TFVCWorkspace
             ValueFromPipeline,
             ParameterSetName = 'Workspace'
         )]
-        [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
+        [Workspace]
         $Workspace,
 
         # Active TFVC Session
@@ -62,7 +64,7 @@ function Remove-TFVCWorkspace
                 }
             }
         }
-        catch [Microsoft.TeamFoundation.VersionControl.Client.WorkspaceDeletedException]
+        catch [WorkspaceDeletedException]
         {
             Write-Verbose 'This workspace has alraedy been deleted'
         }

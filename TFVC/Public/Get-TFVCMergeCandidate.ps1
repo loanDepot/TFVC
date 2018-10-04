@@ -1,3 +1,4 @@
+using namespace Microsoft.TeamFoundation.VersionControl.Client
 function Get-TFVCMergeCandidate
 {
     <#
@@ -42,7 +43,7 @@ function Get-TFVCMergeCandidate
 
     begin
     {
-        $recursive = [Microsoft.TeamFoundation.VersionControl.Client.RecursionType]::Full
+        $recursive = [RecursionType]::Full
     }
 
     process

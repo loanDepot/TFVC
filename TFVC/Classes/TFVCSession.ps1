@@ -1,16 +1,25 @@
+using namespace Microsoft.TeamFoundation.Client
+using namespace Microsoft.TeamFoundation.VersionControl.Client
+
 class TFVCSession
 {
-    [uri] $DisplayName
-    [uri] $Server
+    [uri]
+    $DisplayName
+
+    [uri]
+    $Server
 
     hidden
-    [PSCredential] $Credential
+    [PSCredential]
+    $Credential
 
     hidden
-    [Microsoft.TeamFoundation.Client.TfsTeamProjectCollection] $TfsTeamProjectCollection
+    [TfsTeamProjectCollection]
+    $TfsTeamProjectCollection
 
     hidden
-    [Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer] $VersionControlServer
+    [VersionControlServer]
+    $VersionControlServer
 
 
     TFVCSession( [uri]$ProjectCollectionURI )
@@ -39,7 +48,7 @@ class TFVCSession
 
     [void] Connect( [uri]$ProjectCollectionURI )
     {
-        $this.TfsTeamProjectCollection = [Microsoft.TeamFoundation.Client.TfsTeamProjectCollection]::new( $ProjectCollectionURI )
+        $this.TfsTeamProjectCollection = [TfsTeamProjectCollection]::new( $ProjectCollectionURI )
 
         $this.ValidateConnection($ProjectCollectionURI)
         $this.RefreshProperties()
@@ -47,7 +56,7 @@ class TFVCSession
 
     [void] Connect( [uri]$ProjectCollectionURI, [PSCredential]$Credential )
     {
-        $this.TfsTeamProjectCollection = [Microsoft.TeamFoundation.Client.TfsTeamProjectCollection]::new( $ProjectCollectionURI, $Credential )
+        $this.TfsTeamProjectCollection = [TfsTeamProjectCollection]::new( $ProjectCollectionURI, $Credential )
         $this.TfsTeamProjectCollection.Credentials = $Credential
 
         $this.ValidateConnection($ProjectCollectionURI)
@@ -82,28 +91,35 @@ class TFVCSession
     }
 
     hidden
-    [Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer] GetVersionControlServer ()
+    [VersionControlServer] GetVersionControlServer ()
     {
-        return $this.TfsTeamProjectCollection.GetService( [Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer] )
+        return $this.TfsTeamProjectCollection.GetService( [VersionControlServer] )
     }
 
-    [Microsoft.TeamFoundation.VersionControl.Client.Workspace] GetWorkspaceFromPath( $LocalPath )
+    [Workspace] GetWorkspaceFromPath( $LocalPath )
     {
         return $this.VersionControlServer.GetWorkspace( $LocalPath )
     }
 
-    [Microsoft.TeamFoundation.VersionControl.Client.Workspace] GetWorkspace( $WorkspaceName, $WorkspaceOwner )
+    [Workspace] GetWorkspace( $WorkspaceName, $WorkspaceOwner )
     {
         return $this.VersionControlServer.GetWorkspace( $WorkspaceName, $WorkspaceOwner )
     }
 
-    [Microsoft.TeamFoundation.VersionControl.Client.Workspace] CreateWorkspace( $Name )
+    [Workspace] CreateWorkspace( $Name )
     {
         return $this.VersionControlServer.CreateWorkspace( $Name )
     }
 
-    [Microsoft.TeamFoundation.VersionControl.Client.Shelveset] CreateShelveset( [string]$Name )
+    [Shelveset] CreateShelveset( [string]$Name )
     {
-        return [Microsoft.TeamFoundation.VersionControl.Client.Shelveset]::new( $this.VersionControlServer, $Name, $ENV:USERNAME )
+        return [Shelveset]::new( $this.VersionControlServer, $Name, $ENV:USERNAME )
+    }
+
+    [Changeset] GetChangeset( [Int32]$ChangesetID, [bool]$IncludeChanges, [bool]$IncludeDownloadInfo )
+    {
+        return $this.VersionControlServer.GetChangeset(
+            $ChangesetID, $IncludeChanges, $IncludeDownloadInfo
+        )
     }
 }
