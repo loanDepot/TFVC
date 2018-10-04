@@ -17,8 +17,8 @@ function Merge-TFVCChangeset
     [cmdletbinding(SupportsShouldProcess)]
     [OutputType('[Microsoft.TeamFoundation.VersionControl.Client.GetStatus]')]
     param(
-         # the workspace
-         [Parameter(
+        # the workspace
+        [Parameter(
             Position = 0,
             ValueFromPipeline,
             ParameterSetName = 'Workspace'
@@ -47,7 +47,7 @@ function Merge-TFVCChangeset
         $TargetBranch,
 
         # First or oldest changeset in the list to merge
-        [Alias('Changeset','Start','First')]
+        [Alias('Changeset', 'Start', 'First')]
         [Parameter(
             Mandatory,
             Position = 2,
@@ -58,7 +58,7 @@ function Merge-TFVCChangeset
         $FromChangeset,
 
         # Latest or newest change to be merged
-        [Alias('Last','End')]
+        [Alias('Last', 'End')]
         [Parameter(
             Position = 3,
             ValueFromPipelineByPropertyName

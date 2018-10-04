@@ -10,7 +10,7 @@ function Remove-TFVCSession
         .Notes
 
     #>
-    [Alias('Remove-TFVCConnection','RTFVCS')]
+    [Alias('Remove-TFVCConnection', 'RTFVCS')]
     [cmdletbinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     param ()

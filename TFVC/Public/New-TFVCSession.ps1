@@ -10,7 +10,7 @@ function New-TFVCSession
         .Notes
     #>
 
-    [Alias('Open-TFVCConnection','NTFVCS')]
+    [Alias('Open-TFVCConnection', 'NTFVCS')]
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     param(

@@ -6,7 +6,7 @@ Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
     }
 
     BeforeEach {
-        $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0,64)
+        $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0, 64)
     }
 
     It 'Gets a local workspace' {

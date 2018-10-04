@@ -12,7 +12,7 @@ Describe 'Function Remove-TFVCWorkspace' -Tag LocalIntegration {
     Context 'Functionality' {
 
         BeforeEach {
-            $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0,64)
+            $Name = ('{0}-{1}-deleteme-{2}' -f $env:COMPUTERNAME, $env:USERNAME, (New-Guid)).Substring(0, 64)
         }
 
         It 'does not throw' {

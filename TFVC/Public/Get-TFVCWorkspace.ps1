@@ -16,14 +16,14 @@ function Get-TFVCWorkspace
     [OutputType('Microsoft.TeamFoundation.VersionControl.Client.Workspace')]
     param(
         # Workspace name
-        [Alias('WorkspaceName','Workspace')]
+        [Alias('WorkspaceName', 'Workspace')]
         [Parameter(
             Position = 0,
             ValueFromPipelineByPropertyName,
             ParameterSetName = 'Default'
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateLength(1,64)]
+        [ValidateLength(1, 64)]
         [String]
         $Name = "${env:COMPUTERNAME}-Default",
 
@@ -39,7 +39,7 @@ function Get-TFVCWorkspace
         $Owner = $env:USERNAME,
 
         # Local path to a working folder
-        [Alias('LocalPath','Folder','Directory','FullName','WorkingFolder')]
+        [Alias('LocalPath', 'Folder', 'Directory', 'FullName', 'WorkingFolder')]
         [Parameter(
             Mandatory,
             Position = 0,

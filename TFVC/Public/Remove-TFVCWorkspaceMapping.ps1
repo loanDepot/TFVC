@@ -85,7 +85,7 @@ function Remove-TFVCWorkspaceMapping
             {
                 if ( $PSCmdlet.ShouldProcess( $mapping.ServerItem ) )
                 {
-                    foreach($folder in $Mapping)
+                    foreach ($folder in $Mapping)
                     {
                         $Workspace.DeleteMapping( $folder )
                     }

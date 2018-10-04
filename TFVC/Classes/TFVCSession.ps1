@@ -65,7 +65,7 @@ class TFVCSession
 
     [Void] ValidateConnection([uri] $uri)
     {
-        if( $null -eq $this.TfsTeamProjectCollection.ConfigurationServer )
+        if ( $null -eq $this.TfsTeamProjectCollection.ConfigurationServer )
         {
             throw [System.Runtime.Remoting.ServerException]::New("Was not able to establish a connection to the specified endpoint [$uri]")
         }
@@ -83,7 +83,7 @@ class TFVCSession
 
     [Void] Disconnect()
     {
-        if($null -ne $this.TfsTeamProjectCollection)
+        if ($null -ne $this.TfsTeamProjectCollection)
         {
             $this.TfsTeamProjectCollection.Disconnect()
             $this.TfsTeamProjectCollection.Dispose()

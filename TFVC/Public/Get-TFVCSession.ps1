@@ -10,7 +10,7 @@ function Get-TFVCSession
         .Notes
 
     #>
-    [Alias('Get-TFVCConnection','GTFVCS')]
+    [Alias('Get-TFVCConnection', 'GTFVCS')]
     [cmdletbinding()]
     param ()
 

@@ -12,12 +12,12 @@ function Save-TFVCPendingChange
         .Notes
 
     #>
-    [Alias('Save-TFVCPendingChanges','TFCommit','TFCheckIn')]
+    [Alias('Save-TFVCPendingChanges', 'TFCommit', 'TFCheckIn')]
     [cmdletbinding(SupportsShouldProcess)]
     param(
 
         # Commit Message
-        [Alias('Message','CM')]
+        [Alias('Message', 'CM')]
         [Parameter(
             Mandatory,
             Position = 0,

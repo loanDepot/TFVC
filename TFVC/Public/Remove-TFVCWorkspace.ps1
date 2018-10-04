@@ -22,7 +22,7 @@ function Remove-TFVCWorkspace
             ParameterSetName = 'Named'
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateLength(1,64)]
+        [ValidateLength(1, 64)]
         [String]
         $Name = "${env:COMPUTERNAME}-Default",
 

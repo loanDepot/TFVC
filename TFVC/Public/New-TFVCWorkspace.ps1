@@ -22,7 +22,7 @@ function New-TFVCWorkspace
             ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateLength(1,64)]
+        [ValidateLength(1, 64)]
         [String]
         $Name = "${env:COMPUTERNAME}-Default",
 
@@ -56,8 +56,8 @@ function New-TFVCWorkspace
         {
             Write-Verbose "The workspace [$Name] already exists. Using existing workspace."
             $TFVCWorkspace = @{
-                Name = $Name
-                TFVCSession = $TFVCSession
+                Name               = $Name
+                TFVCSession        = $TFVCSession
                 SetActiveWorkspace = [bool]$SetActiveWorkspace
             }
             Get-TFVCWorkspace @TFVCWorkspace

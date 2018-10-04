@@ -15,7 +15,7 @@ function Remove-TFVCPendingChange
         .Notes
 
     #>
-    [Alias('Remove-TFVCPendingChanges','TFUndo')]
+    [Alias('Remove-TFVCPendingChanges', 'TFUndo')]
     [cmdletbinding(SupportsShouldProcess)]
     [OutputType('[Microsoft.TeamFoundation.VersionControl.Client.PendingChange]')]
     param(

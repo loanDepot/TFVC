@@ -83,7 +83,7 @@ function Add-TFVCWorkspaceMapping
             # Check to see if it is already mapped
             $currentFolder = $Workspace.Folders |
                 Where ServerItem -eq $Source
-                Where LocalItem -eq $Destination
+            Where LocalItem -eq $Destination
 
             if ( $null -eq $currentFolder )
             {

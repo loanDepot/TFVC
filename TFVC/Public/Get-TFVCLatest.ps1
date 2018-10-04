@@ -31,7 +31,7 @@ function Get-TFVCLatest
     {
         try
         {
-            if( $null -ne $Workspace -and $PSCmdlet.ShouldProcess( $Workspace.DisplayName ) )
+            if ( $null -ne $Workspace -and $PSCmdlet.ShouldProcess( $Workspace.DisplayName ) )
             {
                 $Workspace.Get()
             }

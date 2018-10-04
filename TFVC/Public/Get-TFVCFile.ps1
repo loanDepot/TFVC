@@ -25,7 +25,7 @@ function Get-TFVCFile
         $ServerPath,
 
         # Location to save the selected file
-        [Alias('FullName','Path')]
+        [Alias('FullName', 'Path')]
         [Parameter(
             Mandatory,
             Position = 1,
