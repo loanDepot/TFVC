@@ -14,7 +14,8 @@ Performs a merge in the workspace with the specified changes
 
 ```
 Merge-TFVCChangeset [[-Workspace] <Workspace>] [-SourceBranch] <String> [-TargetBranch] <String>
- [-FromChangeset] <Changeset> [[-ToChangeset] <Changeset>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-FromChangeset] <Changeset> [[-ToChangeset] <Changeset>] [-MergeOptions <MergeOptionsEx>]
+ [-LockLevel <LockLevel>] [-RecursionType <RecursionType>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,6 +42,54 @@ Required: True
 Position: 3
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -LockLevel
+Specified lock level
+
+```yaml
+Type: LockLevel
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Checkin, CheckOut, Unchanged
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MergeOptions
+Special options to use for the merge. Default is None
+
+```yaml
+Type: MergeOptionsEx
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, ForceMerge, Baseless, NoMerge, AlwaysAcceptMine, Silent, NoImplicitBaseless, Conservative, NoAutoResolve
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RecursionType
+Recursion type
+
+```yaml
+Type: RecursionType
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, OneLevel, Full
+
+Required: False
+Position: Named
+Default value: Full
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

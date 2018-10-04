@@ -14,7 +14,7 @@ Creates a Shelveset with the current pending changes
 
 ```
 New-TFVCShelveset [[-Name] <String>] [[-Comment] <String>] [[-Workspace] <Workspace>]
- [[-PendingChange] <PendingChange[]>] [-TFVCSession <TFVCSession>] [-ShevlingOptions <ShelvingOptions>]
+ [[-PendingChange] <PendingChange[]>] [-TFVCSession <TFVCSession>] [-ShelvingOptions <ShelvingOptions>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -80,7 +80,7 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -ShevlingOptions
+### -ShelvingOptions
 ShelvingOptions
 
 ```yaml
@@ -158,8 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
