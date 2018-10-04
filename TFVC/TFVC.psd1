@@ -69,7 +69,7 @@ RequiredModules = @('TFVC.libraries')
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport =  @('Add-TFVCWorkspaceMapping','Get-TFVCActiveWorkspace','Get-TFVCChangeset','Get-TFVCLatest','Get-TFVCMergeCandidate','Get-TFVCPendingChange','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','Merge-TFVCChangeset','New-TFVCSession','New-TFVCShelveset','New-TFVCWorkspace','Remove-TFVCActiveWorkspace','Remove-TFVCPendingChange','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping','Save-TFVCPendingChange','Set-TFVCActiveWorkspace')
+FunctionsToExport =  @('Add-TFVCWorkspaceMapping','Get-TFVCActiveWorkspace','Get-TFVCChangeset','Get-TFVCFile','Get-TFVCHistory','Get-TFVCLatest','Get-TFVCMergeCandidate','Get-TFVCPendingChange','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','Merge-TFVCChangeset','New-TFVCSession','New-TFVCShelveset','New-TFVCWorkspace','Remove-TFVCActiveWorkspace','Remove-TFVCPendingChange','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping','Save-TFVCPendingChange','Set-TFVCActiveWorkspace')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport =  @()
@@ -78,7 +78,7 @@ CmdletsToExport =  @()
 VariablesToExport =  @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport =  @('Open-TFVCConnection','NTFVCS','Get-TFVCConnection','GTFVCS','Remove-TFVCConnection','RTFVCS','Get-TFVCPendingChanges','Remove-TFVCPendingChanges','Save-TFVCPendingChanges','TFCommit','TFUndo','TFPending','TFCheckIn','TFChangeset')
+AliasesToExport =  @('Open-TFVCConnection','NTFVCS','Get-TFVCConnection','GTFVCS','Remove-TFVCConnection','RTFVCS','Get-TFVCPendingChanges','Remove-TFVCPendingChanges','Save-TFVCPendingChanges','TFCommit','TFUndo','TFPending','TFCheckIn','TFChangeset','TFDownload')
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -120,4 +120,6 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
+
+
 

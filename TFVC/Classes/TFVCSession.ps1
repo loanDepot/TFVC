@@ -46,7 +46,7 @@ class TFVCSession
         $this.Connect( $URI.uri, $Credential )
     }
 
-    [void] Connect( [uri]$ProjectCollectionURI )
+    [Void] Connect( [uri]$ProjectCollectionURI )
     {
         $this.TfsTeamProjectCollection = [TfsTeamProjectCollection]::new( $ProjectCollectionURI )
 
@@ -54,7 +54,7 @@ class TFVCSession
         $this.RefreshProperties()
     }
 
-    [void] Connect( [uri]$ProjectCollectionURI, [PSCredential]$Credential )
+    [Void] Connect( [uri]$ProjectCollectionURI, [PSCredential]$Credential )
     {
         $this.TfsTeamProjectCollection = [TfsTeamProjectCollection]::new( $ProjectCollectionURI, $Credential )
         $this.TfsTeamProjectCollection.Credentials = $Credential
@@ -63,7 +63,7 @@ class TFVCSession
         $this.RefreshProperties()
     }
 
-    [void] ValidateConnection([uri] $uri)
+    [Void] ValidateConnection([uri] $uri)
     {
         if( $null -eq $this.TfsTeamProjectCollection.ConfigurationServer )
         {
@@ -71,7 +71,7 @@ class TFVCSession
         }
     }
 
-    [void] RefreshProperties()
+    [Void] RefreshProperties()
     {
         if ( $null -ne $this.TfsTeamProjectCollection )
         {
@@ -80,7 +80,8 @@ class TFVCSession
             $this.VersionControlServer = $this.GetVersionControlServer()
         }
     }
-    [void] Disconnect()
+
+    [Void] Disconnect()
     {
         if($null -ne $this.TfsTeamProjectCollection)
         {
@@ -120,6 +121,51 @@ class TFVCSession
     {
         return $this.VersionControlServer.GetChangeset(
             $ChangesetID, $IncludeChanges, $IncludeDownloadInfo
+        )
+    }
+
+    [Void] DownloadFile( [string]$ServerPath, [string]$DestinationPath )
+    {
+        $folder = Split-Path $DestinationPath
+        New-Item -Path $folder -ItemType Directory -Force -ErrorAction Ignore
+
+        $this.VersionControlServer.DownloadFile( $ServerPath, $DestinationPath )
+    }
+
+    [Changeset[]] GetHistory (
+        [String] $ServerPath,
+        [String] $User,
+        [Int32] $MaxCount,
+        [Boolean] $IncludeChanges,
+        [Boolean] $SortAscending
+    )
+    {
+        [Int32] $DeletionId = 0
+        [VersionSpec] $Version = [VersionSpec]::Latest
+        [RecursionType] $Recursion = [RecursionType]::Full
+        [VersionSpec] $VersionFrom = $null
+        [VersionSpec] $VersionTo = $null
+        [Boolean] $SlotMode = $true
+        [Boolean] $IncludeDownloadInfo = $true
+
+        if ( [string]::IsNullOrEmpty( $User ) )
+        {
+            $User = [NullString]::Value
+        }
+
+        return $this.VersionControlServer.QueryHistory(
+            $ServerPath,
+            $Version,
+            $DeletionId,
+            $Recursion,
+            $User,
+            $VersionFrom,
+            $VersionTo,
+            $MaxCount,
+            $IncludeChanges,
+            $SlotMode,
+            $IncludeDownloadInfo,
+            $SortAscending
         )
     }
 }
