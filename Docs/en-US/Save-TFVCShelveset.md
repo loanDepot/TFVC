@@ -5,15 +5,16 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-TFVCPendingChange
+# Save-TFVCShelveset
 
 ## SYNOPSIS
-Removes the specified pending changes
+Creates a Shelveset with the current pending changes
 
 ## SYNTAX
 
 ```
-Remove-TFVCPendingChange [[-Workspace] <Workspace>] [[-Path] <Object>] [[-PendingChange] <PendingChange[]>]
+Save-TFVCShelveset [[-Name] <String>] [[-Comment] <String>] [[-Workspace] <Workspace>]
+ [[-PendingChange] <PendingChange[]>] [-TFVCSession <TFVCSession>] [-ShevlingOptions <ShelvingOptions>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -24,33 +25,48 @@ Remove-TFVCPendingChange [[-Workspace] <Workspace>] [[-Path] <Object>] [[-Pendin
 
 ### EXAMPLE 1
 ```
-Remove-TFVCPendingChange -Path $Path
+TFShelve
 ```
 
 ### EXAMPLE 2
 ```
-Remove-TFVCPendingChange | Remove-TFVCPendingChages
+Save-TFVCShelveset -Workspace $Workspace
 ```
 
 ## PARAMETERS
 
-### -Path
-Local path to the pending change that should be removed
+### -Comment
+The message or comment on the shelveset
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
-Aliases: FullName, LocalItem
+Aliases:
 
 Required: False
 Position: 2
-Default value: None
+Default value: $env:USERNAME
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Name
+The Workspace
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: ('{0}-{1:yyyyMMddHHmmss}' -f $env:USERNAME, (Get-Date) )
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
 ### -PendingChange
-Pending changes to commit
+Pending changes to shelve
 
 ```yaml
 Type: PendingChange[]
@@ -58,9 +74,40 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: 4
 Default value: (Get-TFVCPendingChange)
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -ShevlingOptions
+ShelvingOptions
+
+```yaml
+Type: ShelvingOptions
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Move, Replace
+
+Required: False
+Position: Named
+Default value: Replace
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TFVCSession
+Active TFVC Session
+
+```yaml
+Type: TFVCSession
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: (Get-TFVCSession)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -73,7 +120,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: 3
 Default value: (Get-TFVCActiveWorkspace)
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
@@ -95,8 +142,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
@@ -118,5 +164,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Workspace.Shelve: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/bb139422(v%3dvs.120)
+Shelveset Class: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/bb171628%28v%3dvs.120%29
 
 ## RELATED LINKS

@@ -101,4 +101,9 @@ class TFVCSession
     {
         return $this.VersionControlServer.CreateWorkspace( $Name )
     }
+
+    [Microsoft.TeamFoundation.VersionControl.Client.Shelveset] CreateShelveset( [string]$Name )
+    {
+        return [Microsoft.TeamFoundation.VersionControl.Client.Shelveset]::new( $this.VersionControlServer, $Name, $ENV:USERNAME )
+    }
 }

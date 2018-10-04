@@ -1,4 +1,4 @@
-Describe 'Function Merge-TFVCChangeset' {
+Describe 'Function Merge-TFVCChangeset' -Tag LocalIntegration {
 
     It 'Happy path integration test' {
         New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts

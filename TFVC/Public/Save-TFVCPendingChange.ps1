@@ -1,26 +1,33 @@
-function Remove-TFVCPendingChange
+function Save-TFVCPendingChange
 {
     <#
         .Synopsis
-        Removes the specified pending changes
+        Commit or checking the pending changes in the workspace
 
         .Example
-        Remove-TFVCPendingChange -Path $Path
-
-        .Example
-        Remove-TFVCPendingChange | Remove-TFVCPendingChages
+        Save-TFVCPendingChange
 
         .Notes
 
     #>
-    [Alias('Remove-TFVCPendingChanges','TFUndo')]
+    [Alias('Save-TFVCPendingChanges','TFCommit','TFCheckIn')]
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('[Microsoft.TeamFoundation.VersionControl.Client.PendingChange]')]
     param(
+
+        # Commit Message
+        [Alias('Message','CM')]
+        [Parameter(
+            Mandatory,
+            Position = 0,
+            ValueFromPipelineByPropertyName
+        )]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        $CommitMessage,
 
         # The Workspace
         [Parameter(
-            Position = 0,
+            Position = 2,
             ValueFromPipeline
         )]
         [Microsoft.TeamFoundation.VersionControl.Client.Workspace]
@@ -32,11 +39,12 @@ function Remove-TFVCPendingChange
             Position = 1,
             ValueFromPipelineByPropertyName
         )]
+        [string[]]
         $Path,
 
         # Pending changes to commit
         [Parameter(
-            Position = 2,
+            Position = 3,
             ValueFromPipeline
         )]
         [Microsoft.TeamFoundation.VersionControl.Client.PendingChange[]]
@@ -56,13 +64,15 @@ function Remove-TFVCPendingChange
             {
                 if ( $PSCmdlet.ShouldProcess( ( $PendingChange.LocalItem -join ',' ) ) )
                 {
-                    $count = $Workspace.Undo( $PendingChange )
-
-                    [PSCustomOBject]@{
-                        LocalItem     = $PendingChange.localItem
-                        UndoneChanges = $count
+                    $newchangeset = $Workspace.Checkin( $PendingChange, $CommitMessage )
+                    [PSCustomObject]@{
+                        Changeset = $newchangeset
                     }
                 }
+            }
+            else
+            {
+                Write-Warning "There were no pending chagnes to commit in workspace [$($Workspace.Displayname)]"
             }
         }
         catch

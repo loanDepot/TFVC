@@ -10,7 +10,7 @@ function Get-TFVCPendingChange
         .Notes
 
     #>
-    [Alias('Get-TFVCPendingChanges')]
+    [Alias('Get-TFVCPendingChanges','TFPending')]
     [cmdletbinding()]
     param(
         # The Workspace

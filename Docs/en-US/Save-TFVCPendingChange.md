@@ -5,16 +5,15 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-TFVCPendingChange
+# Save-TFVCPendingChange
 
 ## SYNOPSIS
-Removes the specified pending changes
 
 ## SYNTAX
 
 ```
-Remove-TFVCPendingChange [[-Workspace] <Workspace>] [[-Path] <Object>] [[-PendingChange] <PendingChange[]>]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Save-TFVCPendingChange [-CommitMessage] <String> [[-Workspace] <Workspace>] [[-Path] <String[]>]
+ [[-PendingChange] <PendingChange[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,21 +23,31 @@ Remove-TFVCPendingChange [[-Workspace] <Workspace>] [[-Path] <Object>] [[-Pendin
 
 ### EXAMPLE 1
 ```
-Remove-TFVCPendingChange -Path $Path
-```
-
-### EXAMPLE 2
-```
-Remove-TFVCPendingChange | Remove-TFVCPendingChages
+Save-TFVCPendingChange
 ```
 
 ## PARAMETERS
+
+### -CommitMessage
+Commit Message
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: Message, CM
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
 
 ### -Path
 Local path to the pending change that should be removed
 
 ```yaml
-Type: Object
+Type: String[]
 Parameter Sets: (All)
 Aliases: FullName, LocalItem
 
@@ -58,7 +67,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: 4
 Default value: (Get-TFVCPendingChange)
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
@@ -73,7 +82,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: 3
 Default value: (Get-TFVCActiveWorkspace)
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False

@@ -8,6 +8,7 @@ function Merge-TFVCChangeset
         Merge-TFVCChangeset -Path $Path
 
         .Notes
+        Workspace.Merge: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/bb139330%28v%3dvs.120%29
 
     #>
     [cmdletbinding(SupportsShouldProcess)]
