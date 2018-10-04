@@ -11,10 +11,12 @@ function Get-TFVCChangeset
         GetChagneSet: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/ff737622%28v%3dvs.120%29
         Changeset: https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2013/bb170151%28v%3dvs.120%29
     #>
-    [cmdletbinding()]
+    [Alias('TFChangeset')]
+    [CmdletBinding()]
+    [Outputtype('[Microsoft.TeamFoundation.VersionControl.Client.Changeset]')]
     param(
 
-        # Parameter help description
+        # The ID of the Changeset.
         [Parameter(
             Mandatory,
             Position = 0,
@@ -28,28 +30,31 @@ function Get-TFVCChangeset
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [TFVCSession]
-        $TFVCSession = (Get-TFVCSession)
+        $TFVCSession = (Get-TFVCSession),
+
+        # True to include the changes in the Changeset. False to include only metadata.
+        [Parameter()]
+        [switch]
+        $IncludeChanges,
+
+        # True to get the information needed to download files. Specify false to save bandwidth if not necessary.
+        [Parameter()]
+        [switch]
+        $IncludeDownloadInfo
     )
-
-    begin
-    {
-
-    }
 
     process
     {
         try
         {
-
+            foreach ( $id in $ChangesetID )
+            {
+                $TFVCSession.GetChangeset( $id, $IncludeChanges, $IncludeDownloadInfo )
+            }
         }
         catch
         {
             $PSCmdlet.ThrowTerminatingError( $PSItem )
         }
-    }
-
-    end
-    {
-
     }
 }

@@ -13,7 +13,8 @@ Get specified changeset details
 ## SYNTAX
 
 ```
-Get-TFVCChangeset [-ChangesetID] <Int32[]> [-TFVCSession <TFVCSession>] [<CommonParameters>]
+Get-TFVCChangeset [-ChangesetID] <Int32[]> [-TFVCSession <TFVCSession>] [-IncludeChanges]
+ [-IncludeDownloadInfo] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,6 +41,36 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -IncludeChanges
+True to include the changes in the Changeset. False to include only metadata.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeDownloadInfo
+True to get the information needed to download files. Specify false to save bandwidth if not necessary.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
