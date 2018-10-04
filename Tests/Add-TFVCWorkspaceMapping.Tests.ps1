@@ -4,7 +4,7 @@ Describe 'function Add-TFVCWorkspaceMapping' -Tag LocalIntegration {
         $local = "$testdrive\ppe\trunk"
         $source = '$/PPE/trunk'
 
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = New-TFVCWorkspace
     }
 

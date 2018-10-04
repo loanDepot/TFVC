@@ -7,7 +7,7 @@ function Set-TFVCActiveWorkspace
         Sets a workspace as the default one for the current powershell session
 
         .Example
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = Get-TFVCWorkspace
         Set-TFVCActiveWorkspace -Workspace $Workspace
 

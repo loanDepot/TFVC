@@ -37,7 +37,7 @@ Remove-TFVCWorkspaceMapping [-Workspace] <Workspace> [-Mapping] <WorkingFolder[]
 
 ### EXAMPLE 1
 ```
-New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
 ```
 
 $workspace = Get-TFVCWorkspace

@@ -1,7 +1,7 @@
 Describe 'Function Get-TFVCFile' {
 
     BeforeAll {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $Source = '$/DevOps/Sandboxes/KMarquette/DeployHelper.ps1'
         $Destination = "$testdrive\DeployHelper.ps1"
     }

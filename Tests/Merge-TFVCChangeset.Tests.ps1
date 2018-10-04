@@ -1,7 +1,7 @@
 Describe 'Function Merge-TFVCChangeset' -Tag LocalIntegration {
 
     It 'Happy path integration test' {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
 
         $Workspace = New-TFVCWorkspace -SetActiveWorkspace
         $Workspace | Add-TFVCWorkspaceMapping -Source '$/DevOps/Sandboxes/KMarquette' -Destination 'c:\AllSource\temp\kmarquette'

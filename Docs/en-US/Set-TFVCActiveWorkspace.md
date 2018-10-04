@@ -23,7 +23,7 @@ Set-TFVCActiveWorkspace [-Workspace] <Workspace> [-WhatIf] [-Confirm] [<CommonPa
 
 ### EXAMPLE 1
 ```
-New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
 ```
 
 $workspace = Get-TFVCWorkspace

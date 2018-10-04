@@ -6,7 +6,7 @@ This need an active connectiont to a TFS server
 Describe 'Function Remove-TFVCWorkspace' -Tag LocalIntegration {
 
     BeforeAll {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
     }
 
     Context 'Functionality' {

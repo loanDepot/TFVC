@@ -6,7 +6,7 @@ This need an active connectiont to a TFS server
 Describe 'Function New-TFVCWorkspace' -Tag LocalIntegration {
 
     BeforeAll {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
     }
 
     Context 'Functionality' {
@@ -24,7 +24,7 @@ Describe 'Function New-TFVCWorkspace' -Tag LocalIntegration {
         }
 
         it 'also does not throw' {
-            New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+            New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
             $workspace = New-TFVCWorkspace
             $workspace | Should -Not -BeNullOrEmpty
         }

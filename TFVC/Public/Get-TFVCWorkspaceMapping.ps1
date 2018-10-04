@@ -7,7 +7,7 @@ function Get-TFVCWorkspaceMapping
         Gets the folder mappings in the workspace
 
         .Example
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = Get-TFVCWorkspace
         $Workspace | Get-TFVCWorkspaceMapping
 

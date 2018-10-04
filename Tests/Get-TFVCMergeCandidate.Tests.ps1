@@ -1,7 +1,7 @@
 Describe 'Function Get-TFVCMergeCandidate' -Tag LocalIntegration {
 
     BeforeAll {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
     }
 
     BeforeEach {

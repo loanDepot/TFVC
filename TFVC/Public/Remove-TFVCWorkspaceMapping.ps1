@@ -7,7 +7,7 @@ function Remove-TFVCWorkspaceMapping
         Adds a source to folder mapping to the workspace
 
         .Example
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = Get-TFVCWorkspace
         $workspace | Remove-TFVCWorkspaceMapping -Source '$/PPE/trunk'
 

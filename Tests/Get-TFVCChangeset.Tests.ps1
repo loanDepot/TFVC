@@ -2,7 +2,7 @@ Describe 'Function Get-TFVCChangeset' -Tag LocalIntegration {
 
     It 'Gets the specified chagneset' {
 
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         New-TFVCWorkspace -SetActiveWorkspace
 
         $ID = 122895

@@ -1,7 +1,7 @@
 Describe 'Function Remove-TFVCPendingChange' -Tag LocalIntegration {
 
     BeforeAll {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = New-TFVCWorkspace -SetActiveWorkspace
     }
 

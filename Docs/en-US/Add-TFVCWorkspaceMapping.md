@@ -31,7 +31,7 @@ Add-TFVCWorkspaceMapping [-Workspace] <Workspace> [-Mapping] <WorkingFolder> [-W
 
 ### EXAMPLE 1
 ```
-New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
 ```
 
 $workspace = Get-TFVCWorkspace

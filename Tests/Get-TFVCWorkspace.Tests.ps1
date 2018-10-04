@@ -1,7 +1,7 @@
 Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
 
     BeforeAll {
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspaceFolder = 'C:\AllSource\CLP\trunk'
     }
 

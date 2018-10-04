@@ -24,7 +24,7 @@ Get-TFVCWorkspaceMapping [-Workspace] <Workspace> [[-Source] <String>] [[-Destin
 
 ### EXAMPLE 1
 ```
-New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
 ```
 
 $workspace = Get-TFVCWorkspace

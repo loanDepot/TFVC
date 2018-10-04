@@ -8,7 +8,7 @@ function Get-TFVCLatest
 
 
         .Example
-        New-TFVCSession -ServerURI https://tfs -ProjectCollection ldts
+        New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         $workspace = Get-TFVCWorkspace
         $workspace | Get-TFVCLatest
 
