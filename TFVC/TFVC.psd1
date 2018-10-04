@@ -69,7 +69,7 @@ RequiredModules = @('TFVC.libraries')
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport =  @('Add-TFVCWorkspaceMapping','Get-TFVCActiveWorkspace','Get-TFVCChangeset','Get-TFVCFile','Get-TFVCHistory','Get-TFVCLatest','Get-TFVCMergeCandidate','Get-TFVCPendingChange','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','Merge-TFVCChangeset','New-TFVCSession','New-TFVCShelveset','New-TFVCWorkspace','Remove-TFVCActiveWorkspace','Remove-TFVCPendingChange','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping','Save-TFVCPendingChange','Set-TFVCActiveWorkspace')
+FunctionsToExport =  @('Add-TFVCItem','Add-TFVCWorkspaceMapping','Get-TFVCActiveWorkspace','Get-TFVCChangeset','Get-TFVCFile','Get-TFVCHistory','Get-TFVCLatest','Get-TFVCMergeCandidate','Get-TFVCPendingChange','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','Merge-TFVCChangeset','New-TFVCSession','New-TFVCShelveset','New-TFVCWorkspace','Remove-TFVCActiveWorkspace','Remove-TFVCPendingChange','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping','Save-TFVCPendingChange','Set-TFVCActiveWorkspace')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport =  @()
@@ -120,6 +120,7 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
+
 
 
 
