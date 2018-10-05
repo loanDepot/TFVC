@@ -116,9 +116,4 @@ function Merge-TFVCChangeset
             $PSCmdlet.ThrowTerminatingError( $PSItem )
         }
     }
-
-    end
-    {
-
-    }
 }

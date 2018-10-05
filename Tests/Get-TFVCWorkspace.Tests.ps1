@@ -6,7 +6,7 @@ Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
         $local = "$testdrive\DevOpsTFVCTest\master"
 
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
-        New-TFVCWorkspace -Name $Name
+        New-TFVCWorkspace -Name $Name -SetActiveWorkspace
         Add-TFVCWorkspaceMapping -Source $source -Destination $local
     }
 
@@ -14,7 +14,7 @@ Describe 'functon Get-TFVCWorkspace' -Tag LocalIntegration {
     }
 
     It 'Gets a local workspace' {
-        Get-TFVCWorkspace -Path $workspaceFolder | Should -Not -BeNullOrEmpty
+        Get-TFVCWorkspace -Path $local | Should -Not -BeNullOrEmpty
     }
 
     It 'handles getting a missing workspace' {

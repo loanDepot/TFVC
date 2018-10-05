@@ -5,7 +5,7 @@ Describe 'function Get-TFVCWorkspaceMapping' -Tag LocalIntegration {
         $local = "$testdrive\DevOpsTFVCTest\master"
 
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
-        $workspace = New-TFVCWorkspace
+        $workspace = New-TFVCWorkspace -SetActiveWorkspace
     }
 
     It 'Does not throw' {
