@@ -22,7 +22,7 @@ Describe 'Function Add-TFVCItem' {
 
         $changes = Get-TFVCPendingChange
         $changes | Should -Not -BeNullOrEmpty
-        $chagnes | Should -HaveCount 1
+        $changes | Should -HaveCount 1
     }
 
     It 'Adds a folder to the pending changes' {
@@ -33,7 +33,7 @@ Describe 'Function Add-TFVCItem' {
 
         $changes = Get-TFVCPendingChange
         $changes | Should -Not -BeNullOrEmpty
-        $chagnes | Should -HaveCount 1
+        $changes | Should -HaveCount 1
     }
 
     It 'Adds multiple items to the pending changes' {

@@ -10,7 +10,7 @@ Describe 'Function Merge-TFVCChangeset' -Tag LocalIntegration {
         $targetBranch = "$source/master"
 
         $Workspace = New-TFVCWorkspace -SetActiveWorkspace
-        $Workspace | Add-TFVCWorkspaceMapping -Source $targetBranch -Destination $local
+        Add-TFVCWorkspaceMapping -Source $targetBranch -Destination $local
 
         Remove-TFVCPendingChange
         Get-TFVCLatest

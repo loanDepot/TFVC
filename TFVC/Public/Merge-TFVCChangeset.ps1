@@ -26,7 +26,7 @@ function Merge-TFVCChangeset
         [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace),
 
-        # Source banch with the chagnes that need to be merged
+        # Source banch with the changes that need to be merged
         [Parameter(
             Mandatory,
             Position = 0,

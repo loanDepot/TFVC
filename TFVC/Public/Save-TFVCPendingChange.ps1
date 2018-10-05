@@ -35,7 +35,7 @@ function Save-TFVCPendingChange
         [Workspace]
         $Workspace = (Get-TFVCActiveWorkspace),
 
-        # Local path to the pending change that should be removed
+        # Filter local changes to path
         [Alias('FullName', 'LocalItem')]
         [Parameter(
             Position = 1,
@@ -74,7 +74,7 @@ function Save-TFVCPendingChange
             }
             else
             {
-                Write-Warning "There were no pending chagnes to commit in workspace [$($Workspace.Displayname)]"
+                Write-Warning "There were no pending changes to commit in workspace [$($Workspace.Displayname)]"
             }
         }
         catch

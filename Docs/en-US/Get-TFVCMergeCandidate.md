@@ -30,7 +30,7 @@ Get-TFVCMergeCandidate -SourceBranch $SourceBranch -TargetBranch $TargetBbranch 
 ## PARAMETERS
 
 ### -SourceBranch
-Source banch with the chagnes that need to be merged
+Source banch with the changes that need to be merged
 
 ```yaml
 Type: String

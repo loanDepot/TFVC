@@ -14,7 +14,7 @@ function Get-TFVCMergeCandidate
     [cmdletbinding()]
     param(
 
-        # Source banch with the chagnes that need to be merged
+        # Source banch with the changes that need to be merged
         [Parameter(
             Mandatory,
             Position = 1,
