@@ -6,7 +6,7 @@ TFS Source Control Management
 
 Clone this repository
 
-    git clone https://tfs/DevOps/_git/TFVC
+    git clone https://github.com/loanDepot/TFVC.git
 
 # Building
 
