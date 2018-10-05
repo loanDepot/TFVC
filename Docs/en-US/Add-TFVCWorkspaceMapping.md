@@ -14,13 +14,13 @@ Adds a source to folder mapping to the workspace
 
 ### Path (Default)
 ```
-Add-TFVCWorkspaceMapping [-Workspace] <Workspace> [-Source] <String> [-Destination] <String> [-WhatIf]
+Add-TFVCWorkspaceMapping [-Workspace <Workspace>] [-Source] <String> [-Destination] <String> [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
 ### WorkingFolder
 ```
-Add-TFVCWorkspaceMapping [-Workspace] <Workspace> [-Mapping] <WorkingFolder> [-WhatIf] [-Confirm]
+Add-TFVCWorkspaceMapping [-Workspace <Workspace>] [-Mapping] <WorkingFolder> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -48,7 +48,7 @@ Parameter Sets: Path
 Aliases: DestinationPath, Path, LocalPath, FullName, LocalItem
 
 Required: True
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -63,7 +63,7 @@ Parameter Sets: WorkingFolder
 Aliases: WorkingFolder
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
@@ -78,7 +78,7 @@ Parameter Sets: Path
 Aliases: SourcePath, TFSLocaion, ServerItem
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -92,8 +92,8 @@ Type: Workspace
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 1
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False

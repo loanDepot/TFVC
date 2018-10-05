@@ -1,9 +1,9 @@
-Describe 'Function Get-TFVCFile' {
+Describe 'Function Get-TFVCFile' -tag LocalIntegration {
 
     BeforeAll {
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
-        $Source = '$/DevOps/Sandboxes/KMarquette/DeployHelper.ps1'
-        $Destination = "$testdrive\DeployHelper.ps1"
+        $Source = '$/DevOpsTFVCTest/master/readme.md'
+        $Destination = "$testdrive\readme.md"
     }
 
     It 'Should not throw' {

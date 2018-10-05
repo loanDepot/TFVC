@@ -45,7 +45,7 @@ function Add-TFVCItem
         {
             $allFiles = Resolve-Path -Path $Path
 
-            $count = foreach ( $node in $allFiles )
+            $count = foreach ( $node in $allFiles.Path )
             {
                 $Workspace.PendAdd( $node, $Recurse )
             }

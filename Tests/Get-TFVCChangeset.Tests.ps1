@@ -5,7 +5,7 @@ Describe 'Function Get-TFVCChangeset' -Tag LocalIntegration {
         New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
         New-TFVCWorkspace -SetActiveWorkspace
 
-        $ID = 122895
+        $ID = 21
         $changeset = Get-TFVCChangeset -ChangesetID $ID
         $changeset | Should -Not -BeNullOrEmpty
         $changeset.Comment | Should -Not -BeNullOrEmpty

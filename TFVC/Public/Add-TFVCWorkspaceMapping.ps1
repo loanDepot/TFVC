@@ -14,24 +14,23 @@ function Add-TFVCWorkspaceMapping
         .Notes
 
     #>
+    [Alias('TFMap')]
     [cmdletbinding( DefaultParameterSetName = 'Path', SupportsShouldProcess )]
     param(
 
         # A workspace to add a source mapping to
         [Parameter(
-            Mandatory,
-            Position = 0,
             ValueFromPipeline
         )]
         [ValidateNotNullOrEmpty()]
         [Workspace]
-        $Workspace,
+        $Workspace = (Get-TFVCActiveWorkspace),
 
         # The TFS locaion to map to the local system
         [Alias('SourcePath', 'TFSLocaion', 'ServerItem')]
         [Parameter(
             Mandatory,
-            Position = 1,
+            Position = 0,
             ValueFromPipelineByPropertyName,
             ParameterSetName = 'Path'
         )]
@@ -43,7 +42,7 @@ function Add-TFVCWorkspaceMapping
         [Alias('DestinationPath', 'Path', 'LocalPath', 'FullName', 'LocalItem')]
         [Parameter(
             Mandatory,
-            Position = 2,
+            Position = 1,
             ValueFromPipelineByPropertyName,
             ParameterSetName = 'Path'
         )]
@@ -55,7 +54,7 @@ function Add-TFVCWorkspaceMapping
         [Alias('WorkingFolder')]
         [Parameter(
             Mandatory,
-            Position = 1,
+            Position = 0,
             ValueFromPipeline,
             ParameterSetName = 'WorkingFolder'
         )]

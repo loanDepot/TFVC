@@ -15,7 +15,12 @@ Describe 'Function Get-TFVCMergeCandidate' -Tag LocalIntegration {
     }
 
     It "Handles incorrect target path" {
-        $changeset = Get-TFVCMergeCandidate -SourceBranch '$/DevOps/doesnotexist' -TargetBranch $targetBranch
+        $changeset = Get-TFVCMergeCandidate -SourceBranch '$/DevOpsTFVCTest/doesnotexist' -TargetBranch $targetBranch
+        $changeset | Should -BeNullOrEmpty
+    }
+
+    It "Handles incorrect project path" -Pending {
+        $changeset = Get-TFVCMergeCandidate -SourceBranch '$/doesnotexist/doesnotexist' -TargetBranch $targetBranch
         $changeset | Should -BeNullOrEmpty
     }
 }
