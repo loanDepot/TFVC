@@ -36,6 +36,19 @@ Most of the tests in this module require a TFS instance to run. Those tests are 
 
     Invoke-Pester -Tag LocalIntegration
 
+# Example
+
+Here are a few quick commands to connect to a TFS server and project collection. This will create a new workspace, add a mapping, and get latest.
+
+    New-TFVCSession -ServerURI https://tfs -ProjectCollection DevOps
+    New-TFVCWorkspace -SetActiveWorkspace
+
+    $source = '$/DevOps/master'
+    $local = "$env:temp\DevOps\master"
+    Add-TFVCWorkspaceMapping -Source $targetBranch -Destination $local
+
+    Get-TFVCLatest
+
 # Commands in this module
 
 Here are the current commands available in the module:
