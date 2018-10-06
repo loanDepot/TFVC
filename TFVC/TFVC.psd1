@@ -12,7 +12,7 @@
 RootModule = 'TFVC.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.1'
+ModuleVersion = '0.1.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -51,7 +51,7 @@ PowerShellVersion = '5.0'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @('TFVC.libraries')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -69,7 +69,7 @@ PowerShellVersion = '5.0'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport =  @()
+FunctionsToExport =  @('Add-TFVCItem','Add-TFVCWorkspaceMapping','Get-TFVCActiveWorkspace','Get-TFVCChangeset','Get-TFVCFile','Get-TFVCHistory','Get-TFVCLatest','Get-TFVCMergeCandidate','Get-TFVCPendingChange','Get-TFVCSession','Get-TFVCWorkspace','Get-TFVCWorkspaceMapping','Merge-TFVCChangeset','New-TFVCSession','New-TFVCShelveset','New-TFVCWorkspace','Remove-TFVCActiveWorkspace','Remove-TFVCPendingChange','Remove-TFVCSession','Remove-TFVCWorkspace','Remove-TFVCWorkspaceMapping','Save-TFVCPendingChange','Set-TFVCActiveWorkspace')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport =  @()
@@ -78,7 +78,7 @@ CmdletsToExport =  @()
 VariablesToExport =  @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport =  @()
+AliasesToExport =  @('Open-TFVCConnection','NTFVCS','Get-TFVCConnection','GTFVCS','Remove-TFVCConnection','RTFVCS','Get-TFVCPendingChanges','Remove-TFVCPendingChanges','Save-TFVCPendingChanges','TFCommit','TFUndo','TFPending','TFCheckIn','TFChangeset','TFDownload','TFAdd','TFMap')
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('loanDepot','TFS','TFVC','SourceControl')
 
         # A URL to the license for this module.
         # LicenseUri = ''
