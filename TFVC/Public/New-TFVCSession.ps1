@@ -41,7 +41,11 @@ function New-TFVCSession
         )]
         [ValidateNotNullOrEmpty()]
         [PSCredential]
-        $Credential
+        $Credential,
+
+        # Pass the session object to the pipeline
+        [switch]
+        $PassThru
     )
 
     process
@@ -62,7 +66,10 @@ function New-TFVCSession
                 $script:MasterTFVCSession = [TFVCSession]::New( $ServerURI, $ProjectCollection )
             }
 
-            return $script:MasterTFVCSession
+            if ( $PassThru )
+            {
+                return $script:MasterTFVCSession
+            }
         }
         catch
         {

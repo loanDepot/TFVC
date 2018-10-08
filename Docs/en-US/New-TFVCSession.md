@@ -13,7 +13,7 @@ Creates a connection to a TFS or VSTS endpoint
 ## SYNTAX
 
 ```
-New-TFVCSession [-ServerURI] <Uri> [-ProjectCollection] <String> [[-Credential] <PSCredential>]
+New-TFVCSession [-ServerURI] <Uri> [-ProjectCollection] <String> [[-Credential] <PSCredential>] [-PassThru]
  [<CommonParameters>]
 ```
 
@@ -41,6 +41,21 @@ Required: False
 Position: 3
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -PassThru
+{{Fill PassThru Description}}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
