@@ -18,7 +18,7 @@ pool:
   vmImage: 'vs2017-win2016'
 
 steps:
-- script: pwsh -File build.ps1 Publish
+- script: powershell -File build.ps1 Publish
   displayName: 'Build and Publish Module'
   env:
     nugetapikey: $(nugetapikey)
