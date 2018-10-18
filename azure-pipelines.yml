@@ -15,10 +15,10 @@ trigger:
       - master
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'Ubuntu 16.04'
 
 steps:
-- script: powershell -File build.ps1 Publish
+- script: pwsh -File build.ps1 Publish
   displayName: 'Build and Publish Module'
   env:
     nugetapikey: $(nugetapikey)

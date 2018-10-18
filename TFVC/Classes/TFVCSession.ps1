@@ -67,7 +67,7 @@ class TFVCSession
     {
         if ( $null -eq $this.TfsTeamProjectCollection.ConfigurationServer )
         {
-            throw [System.Runtime.Remoting.ServerException]::New("Was not able to establish a connection to the specified endpoint [$uri]")
+            throw [TFVCSessionException]::New("Was not able to establish a connection to the specified endpoint [$uri]")
         }
     }
 
