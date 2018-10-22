@@ -18,7 +18,9 @@ task PublishModule {
 
         "Publishing [$Destination] to [$PSRepository]"
 
+        $DebugPreference = 'Continue'
         Publish-Module @publishModuleSplat
+        $DebugPreference = 'SilentlyContinue'
     }
     else
     {
