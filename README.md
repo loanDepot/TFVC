@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/loandepotdevops/OpenSourceModules/_apis/build/status/loanDepot.TFVC)](https://dev.azure.com/loandepotdevops/OpenSourceModules/_build/latest?definitionId=2)
 # TFVC
 
 TFS Source Control Management PowerShell Module.
