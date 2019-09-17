@@ -35,15 +35,24 @@ class TFVCSession
     TFVCSession( [uri]$Server, [string]$ProjectCollectionName )
     {
         $URI = [uribuilder]::new( $Server)
-        $URI.Path = $ProjectCollectionName
+        $URI.Path = $this.AppendProjectCollectionToPath($URI.Path, $ProjectCollectionName)
         $this.Connect( $URI.uri )
     }
 
     TFVCSession( [uri]$Server, [string]$ProjectCollectionName, [PSCredential]$Credential )
     {
         $URI = [uribuilder]::new( $Server)
-        $URI.Path = $ProjectCollectionName
+        $URI.Path = $this.AppendProjectCollectionToPath($URI.Path, $ProjectCollectionName)
         $this.Connect( $URI.uri, $Credential )
+    }
+
+    [string] AppendProjectCollectionToPath([string]$Path, [string]$ProjectCollectionName)
+    {
+        if (-not $Path.EndsWith('/'))
+        {
+            $Path = "$Path/"
+        }
+        return $Path + $ProjectCollectionName
     }
 
     [Void] Connect( [uri]$ProjectCollectionURI )
